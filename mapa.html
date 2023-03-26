@@ -69,58 +69,31 @@
 	</nav>
 
 	<!-- Page Content -->
-	<div class="container py-5">
-		<h1>Show Current Location on OpenStreetMap</h1>
-		<div id="map"></div>
+	<div id="map" class="container py-5" style="height: 500px">
 	</div>
 
-	<script src="https://cdn.jsdelivr.net/npm/ol@6.6.1/dist/ol.js"></script>
-  	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ol@6.6.1/dist/ol.css" type="text/css">
+	<script src="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.js"></script>
+  	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.css" type="text/css">
 
 	<script>
 		// Create a new map object and center it on the user's location
-		const map = new ol.Map({
-		  target: 'map',
-		  layers: [
-			new ol.layer.Tile({
-			  source: new ol.source.OSM()
-			})
-		  ],
-		  view: new ol.View({
-			center: ol.proj.fromLonLat([0, 0]),
-			zoom: 2
-		  })
-		});
+		const map = L.map('map').setView([0, 0], 2);
+		L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+		attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
+		maxZoom: 18
+		}).addTo(map);
 
 		// Get the user's location and update the map's center
 		navigator.geolocation.getCurrentPosition(position => {
-		  const {latitude, longitude} = position.coords;
-		  const center = ol.proj.fromLonLat([longitude, latitude]);
-		  map.getView().setCenter(center);
-		  map.getView().setZoom(15);
+		const {latitude, longitude} = position.coords;
+		const center = [latitude, longitude];
+		map.setView(center, 15);
 
-		  // Add a marker at the user's location
-		  const marker = new ol.Feature({
-			geometry: new ol.geom.Point(center)
-		  });
-
-		  const vectorSource = new ol.source.Vector({
-			features: [marker]
-		  });
-
-		  const markerVectorLayer = new ol.layer.Vector({
-			source: vectorSource,
-			style: new ol.style.Style({
-			  image: new ol.style.Icon({
-				anchor: [0.5, 1],
-				src: 'https://openlayers.org/en/latest/examples/data/icon.png'
-			  })
-			})
-		  });
-
-		  map.addLayer(markerVectorLayer);
+		// Add a marker at the user's location
+		const marker = L.marker(center).addTo(map);
+		marker.bindPopup("You are here!").openPopup();
 		}, error => {
-		  console.error(error);
+		console.error(error);
 		});
 	</script>
 
