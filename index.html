@@ -55,13 +55,13 @@
 			<div class="collapse navbar-collapse" id="navbarNav">
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item">
-						<a class="nav-link" href="pwa/index.html">Strona Główna</a>
+						<a class="nav-link" href="https://jgawronuek.github.io/pwa">Strona Główna</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="pwa/html/mapa.html">Mapa</a>
+						<a class="nav-link" href="https://jgawronuek.github.io/pwa/mapa.html">Mapa</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="pwa/html/gps.html">Gps</a>
+						<a class="nav-link" href="https://jgawronuek.github.io/pwa/gps.html">Gps</a>
 					</li>
 				</ul>
 			</div>
@@ -78,6 +78,13 @@
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	<script>
+		if ('serviceWorker' in navigator) {
+		  navigator.serviceWorker.register(
+			'/sw.js'
+		  );
+		}
+	</script>
 </body>
 
 </html>
