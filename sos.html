@@ -61,7 +61,7 @@
 						<a class="nav-link" href="pwa/mapa.html">Mapa</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="pwa/gps.html">Gps</a>
+						<a class="nav-link" href="pwa/sos.html">SOS</a>
 					</li>
 				</ul>
 			</div>
@@ -70,9 +70,16 @@
 
 	<!-- Page Content -->
 	<div class="container py-5">
-		<h1 class="text-center mb-4">Witamy w naszej aplikacji PWA!</h1>
-		<p>by Michał Adamczyk 218180 i Jakub Gawron 219149</p>
+		<button id="vibrateButton">SOS</button>
 	</div>
+
+	<script>
+		const vibrateButton = document.getElementById('vibrateButton');
+
+		vibrateButton.addEventListener('click', () => {
+		  navigator.vibrate([100, 200, 100, 500, 100, 200, 100, 500, 100, 200, 100]);
+		});
+	  </script>
 
 	<!-- jQuery and Bootstrap JS -->
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>

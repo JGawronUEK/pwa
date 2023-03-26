@@ -6,7 +6,7 @@
   "start_url": [
     "index.html",
     "mapa.html",
-    "gps.html"
+    "sos.html"
   ],
   "short_name": "starter",
   "theme_color": "#E1477E",
